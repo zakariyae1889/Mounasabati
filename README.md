@@ -1,2 +1,2 @@
-# makani-morocco
-A local vacation rental platform for Morocco built with Fast-API and Next-js
+# Mounasabati-morocco
+AMounasabati هي منصة رقمية مغربية متكاملة (Event Tech Marketplace) تهدف إلى إعادة صياغة تجربة تنظيم المناسبات في المغرب. تعمل المنصة كجسر تقني ذكي يربط بين مزودي خدمات الحفلات (قاعات الأفراح، الممونون، المصورون، وفرق الموسيقى) والزبائن الباحثين عن تنظيم مناسباتهم بكفاءة، شفافية، وبأقل مجهو
