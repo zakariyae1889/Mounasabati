@@ -8,7 +8,8 @@ class Vendor(Base):
     id=Column(Integer,primary_key=True,index=True)
 
     user_id=Column(Integer,ForeignKey("users.id"))
-    users=relationship("User",back_populates="vendor")
+    
+
 
     business_name=Column("String",index=True)
 
@@ -17,4 +18,7 @@ class Vendor(Base):
     
     rc_number=Column(String,index=True)
     address=Column(String,index=True)
-    description=Column(Text,nullable=False)
+    description=Column(Text,nullable=True)
+
+    user=relationship("User",back_populates="vendor")
+    vendor=relationship("Service",back_populate="service")

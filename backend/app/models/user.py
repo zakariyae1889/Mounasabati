@@ -13,8 +13,8 @@ class User(Base):
     __tablename__="users"
     id=Column(Integer,primary_key=True,index=True)
     username=Column(String,unique=True,index=True)
-    first_name=Column(String,index=True,nullable=False)
-    last_name=Column(String,index=True,nullable=False)
+    first_name=Column(String,index=True,nullable=True)
+    last_name=Column(String,index=True,nullable=True)
     email=Column(String,unique=True,index=True)
     CIN=Column(String,unique=True,index=True)
     role=Column(Enum(UserRole),defualt=UserRole.client)
