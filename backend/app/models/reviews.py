@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, CheckConstraint, DateTime
 from sqlalchemy.orm import relationship
 import datetime
-from core.database import Base
+from app.core.database import Base
 
 class Review(Base):
     __tablename__ = "reviews"
@@ -26,9 +26,9 @@ class Review(Base):
     service = relationship("Service", back_populates="reviews")
 
 
-    created_at = Column(DateTime, default=datetime.timezone.utcnow)
-    
-    updated_at = Column(DateTime, default=datetime.timezone.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow)
    
     __table_args__ = (
         CheckConstraint('rating >= 1 AND rating <= 5', name='check_rating_range'),

@@ -1,6 +1,6 @@
 from sqlalchemy import Column,Integer,String,ForeignKey,Text,DateTime
 from sqlalchemy.orm import relationship
-from core.database import Base
+from app.core.database import Base
 
 import datetime
 
@@ -17,6 +17,6 @@ class Client(Base):
 
     user = relationship("User", back_populates="client_profile")
 
-    created_at = Column(DateTime, default=datetime.timezone.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
-    updated_at = Column(DateTime, default=datetime.timezone.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow)

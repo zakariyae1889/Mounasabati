@@ -1,6 +1,6 @@
 from sqlalchemy import Column,Integer,String,ForeignKey,Enum,DECIMAL,Text,DateTime
 from sqlalchemy.orm import relationship
-from core.database import Base
+from app.core.database import Base
 import datetime
 
 import enum
@@ -24,6 +24,6 @@ class Service(Base):
     bookings = relationship("Booking", back_populates="service")
 
 
-    created_at = Column(DateTime, default=datetime.timezone.utcnow)
-    
-    updated_at = Column(DateTime, default=datetime.timezone.utcnow)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow)
