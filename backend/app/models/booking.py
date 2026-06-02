@@ -1,4 +1,4 @@
-from sqlalchemy import Column,Integer,ForeignKey,Date,DECIMAL,Enum
+from sqlalchemy import Column,Integer,ForeignKey,String,DECIMAL,Enum
 from sqlalchemy.orm import relationship
 from app.core.database import Base
 
@@ -18,9 +18,11 @@ class Booking(Base):
     service_id = Column(Integer, ForeignKey("services.id")) # تصحيح كلمة services
     user_id = Column(Integer, ForeignKey("users.id"))
 
-    event_date = Column(Date, index=True) # تصحيح سبراينج event
+    event_date = Column(String, index=True) 
+    event_time =Column(String,index=True)
     total_price = Column(DECIMAL(10, 2), default=0.00)
     status = Column(Enum(BookingStatus), default=BookingStatus.pending)
 
     user = relationship("User", back_populates="bookings")
     service = relationship("Service", back_populates="bookings")
+
