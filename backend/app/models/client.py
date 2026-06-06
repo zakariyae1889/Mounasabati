@@ -5,11 +5,7 @@ import uuid
 from uuid import UUID
 from app.models import User
 
-import uuid
-from uuid import UUID
-from datetime import datetime
-from typing import Optional
-from sqlmodel import SQLModel, Field, Relationship
+
 
 class Client(SQLModel, table=True):
     __tablename__ = "clients"

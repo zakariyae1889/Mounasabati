@@ -9,7 +9,7 @@ from app.models.client import Client
 from app.models.vendor import Vendor
 from app.models.reviews import Review
 from   app.models.booking import Booking
-
+from app.models.payment import Payment
 from app.models.notification import Notification
 class UserRole(str, enum.Enum):
     client = "client"
@@ -18,12 +18,7 @@ class UserRole(str, enum.Enum):
 
 
 
-import uuid
-from uuid import UUID
-from datetime import datetime
-from typing import Optional, List
-from sqlmodel import SQLModel, Field, Relationship
-import enum
+
 
 class UserRole(str, enum.Enum):
     client = "client"
@@ -52,3 +47,4 @@ class User(SQLModel, table=True):
     reviews: List["Review"] = Relationship(back_populates="user")
     bookings: List["Booking"] = Relationship(back_populates="user") 
     notifications: List["Notification"] = Relationship(back_populates="user")
+    payment: List["Payment"] = Relationship(back_populates="user")
