@@ -1,12 +1,15 @@
 from __future__ import annotations
 from datetime import datetime,timezone
-from typing import Optional
+from typing import Optional,TYPE_CHECKING
 from sqlmodel import SQLModel,Field,Relationship
 
 import enum
 import uuid
 from uuid import UUID
 
+if TYPE_CHECKING:
+    from .user import User
+    from .booking import Booking
 
 
 class PaymentStatus(str,enum.Enum):

@@ -1,17 +1,16 @@
 from __future__ import annotations
 from datetime import datetime,timezone
-from typing import Optional, List
+from typing import Optional, List,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
 
+if TYPE_CHECKING:
+    from .user import User
+    from .service import Service
 
 
-import uuid
-from uuid import UUID
-from datetime import datetime
-from typing import Optional, List
-from sqlmodel import SQLModel, Field, Relationship
+
 
 class Vendor(SQLModel, table=True):
     __tablename__ = "vendors"

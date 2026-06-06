@@ -1,11 +1,15 @@
 
 from __future__ import annotations
-from typing import Optional
+from typing import Optional,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship,CheckConstraint
 
 from datetime import datetime, timezone
 import uuid
 from uuid import UUID
+
+if TYPE_CHECKING:
+    from .user import User
+    from .service import Service
 
 
 

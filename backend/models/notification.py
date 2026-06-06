@@ -2,9 +2,11 @@ from __future__ import annotations
 import uuid
 from uuid import UUID
 from datetime import datetime,timezone
-from typing import Optional
+from typing import Optional,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 
+if TYPE_CHECKING:
+    from .user import User
 
 
 class Notification(SQLModel, table=True):

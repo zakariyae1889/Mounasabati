@@ -1,7 +1,7 @@
 from __future__ import annotations
 import enum
 from datetime import datetime,timezone
-from typing import Optional, List
+from typing import Optional, List,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 
 
@@ -10,6 +10,9 @@ from uuid import UUID
 import enum
 
 
+if TYPE_CHECKING:
+    from .vendor import Vendor
+    from .booking import Booking
 
 
 

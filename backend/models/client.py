@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 from datetime import datetime,timezone
-from typing import Optional
+from typing import Optional,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
 
+
+if TYPE_CHECKING:
+    from .user import User
 
 
 

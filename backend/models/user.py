@@ -1,12 +1,17 @@
 from __future__ import annotations
 import enum
 from datetime import datetime,timezone
-from typing import Optional, List
+from typing import Optional, List,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
 
-# تعريف الـ Roles مرة واحدة فقط بشكل صحيح
+if TYPE_CHECKING:
+    from .client import Client
+    from .vendor import Vendor
+    from .reviews import Review
+    from .booking import Booking
+
 class UserRole(str, enum.Enum):
     client = "client"
     vendor = "vendor"

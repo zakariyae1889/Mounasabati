@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional,List
+from typing import Optional,List,TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 
 import datetime
@@ -8,7 +8,10 @@ import uuid
 from uuid import UUID
 import enum
 
-
+if TYPE_CHECKING:
+    from .user import User
+    from .service import Service
+    from .payment import Payment
 
 class BookingStatus(enum.Enum):
     pending = "pending"
