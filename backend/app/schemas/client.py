@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional
 from app.schemas.user import UserOut
-
+from pydantic import BaseModel
+from uuid import UUID
 
 class ClientCrete(BaseModel):
     Phone:Optional[str]=None
@@ -17,6 +18,7 @@ class ClientUpdate(BaseModel):
 
 
 class ClientOut(BaseModel):
+    id:UUID
     user:UserOut
     Phone:str
     City:str

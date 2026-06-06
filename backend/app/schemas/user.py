@@ -1,6 +1,6 @@
 from pydantic import BaseModel ,EmailStr,Field
 from typing import Optional
-
+from uuid import UUID
 class UserCreate(BaseModel):
     username: str = Field(..., min_length=4, max_length=16)
     email: EmailStr
@@ -14,7 +14,7 @@ class UserCreate(BaseModel):
 
 
 class UserOut(BaseModel):
-    id: int
+    id: UUID
     username: str
     email: EmailStr
     first_name: Optional[str]
