@@ -1,5 +1,5 @@
 from sqlmodel import create_engine, Session, SQLModel
-from app.models import * # استيراد كل الموديلات دفعة واحدة
+
 
 # مسار مباشر وصريح وقصير جداً
 DATABASE_URL = "sqlite:///mounasabati.db"

@@ -6,8 +6,8 @@ import datetime
 import uuid
 from uuid import UUID
 
-from app.models.user import User
-from app.models.service import Service
+from src.models.user import User
+from src.models.service import Service
 
 import uuid
 from uuid import UUID

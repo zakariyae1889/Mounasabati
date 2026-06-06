@@ -3,8 +3,8 @@ from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
-from app.models.user import User
-from app.models.service import Service
+from src.models.user import User
+from src.models.service import Service
 
 
 import uuid

@@ -1,6 +1,6 @@
 from pydantic import Field,BaseModel
 from typing import Optional
-from app.schemas.user import UserOut
+from src.schemas.user import UserOut
 
 
 class VendorCreate(BaseModel):

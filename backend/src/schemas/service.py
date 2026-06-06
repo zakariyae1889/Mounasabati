@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
-from app.schemas.vendor import VendorOut
-from  app.models.service import ServiceStatus
+from src.schemas.vendor import VendorOut
+from  src.models.service import ServiceStatus
 from uuid import UUID
 class ServiceCreate(BaseModel):
     name: str = Field(..., min_length=4, max_length=50)

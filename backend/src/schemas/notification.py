@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
-from app.schemas.user import UserOut
+from src.schemas.user import UserOut
 
 class NotificationCreate(BaseModel):
    

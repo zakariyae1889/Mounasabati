@@ -2,9 +2,9 @@ from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
 from typing import Optional
-from app.models.payment import PaymentStatus 
-from app.schemas.user import UserOut
-from app.schemas.booking import BookingReceipt
+from src.models.payment import PaymentStatus 
+from src.schemas.user import UserOut
+from src.schemas.booking import BookingReceipt
 
 class PaymentCreate(BaseModel):
   

@@ -5,8 +5,8 @@ from sqlmodel import SQLModel,Field,Relationship
 import enum
 import uuid
 from uuid import UUID
-from app.models.user import User
-from app.models.booking import Booking
+from src.models.user import User
+from src.models.booking import Booking
 class PaymentStatus(str,enum.Enum):
     Pending="pending"
     Success="success"

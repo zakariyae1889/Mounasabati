@@ -5,12 +5,12 @@ from sqlmodel import SQLModel, Field, Relationship
 
 import uuid
 from uuid import UUID
-from app.models.client import Client
-from app.models.vendor import Vendor
-from app.models.reviews import Review
-from   app.models.booking import Booking
-from app.models.payment import Payment
-from app.models.notification import Notification
+from src.models.client import Client
+from src.models.vendor import Vendor
+from src.models.reviews import Review
+from src.models.booking import Booking
+from src.models.payment import Payment
+from src.models.notification import Notification
 class UserRole(str, enum.Enum):
     client = "client"
     vendor = "vendor"

@@ -9,10 +9,10 @@ from uuid import UUID
 import enum
 
 
-from app.models.vendor import Vendor
-from app.models.reviews import Review
-from app.models.booking import Booking
-from app.models.client import Client
+from src.models.vendor import Vendor
+from src.models.reviews import Review
+from src.models.booking import Booking
+from src.models.client import Client
 
 
 

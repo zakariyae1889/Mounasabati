@@ -3,7 +3,7 @@ from typing import Optional
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
-from app.models import User
+from src.models import User
 
 
 

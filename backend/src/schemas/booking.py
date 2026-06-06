@@ -1,8 +1,8 @@
 from pydantic import BaseModel,Field
 from datetime import date, time
 from uuid import UUID
-from app.schemas.service import ServiceOut
-from app.models.booking import BookingStatus
+from src.schemas.service import ServiceOut
+from src.models.booking import BookingStatus
 
 
 class BookingCreate(BaseModel):

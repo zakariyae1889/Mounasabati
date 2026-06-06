@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from app.schemas.user import UserOut
+from src.schemas.user import UserOut
 from pydantic import BaseModel
 from uuid import UUID
 

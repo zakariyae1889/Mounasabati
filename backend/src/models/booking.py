@@ -8,9 +8,9 @@ import uuid
 from uuid import UUID
 import enum
 
-from app.models.user import User
-from app.models.service import Service
-from app.models.payment import Payment
+from src.models.user import User
+from src.models.service import Service
+from src.models.payment import Payment
 class BookingStatus(enum.Enum):
     pending = "pending"
     confirmed = "confirmed"
