@@ -1,19 +1,14 @@
 
+from __future__ import annotations
 from typing import Optional
 from sqlmodel import SQLModel, Field, Relationship,CheckConstraint
 
-import datetime
+from datetime import datetime, timezone
 import uuid
 from uuid import UUID
 
-from src.models.user import User
-from src.models.service import Service
 
-import uuid
-from uuid import UUID
-from datetime import datetime
-from typing import Optional
-from sqlmodel import SQLModel, Field, Relationship, CheckConstraint
+
 
 class Review(SQLModel, table=True):
     __tablename__ = "reviews"
@@ -24,8 +19,8 @@ class Review(SQLModel, table=True):
 
     rating: int = Field(nullable=False) # التقييم إجباري من 1 لـ 5
 
-    created_at: datetime = Field(default_factory=datetime.utcnow)  
-    updated_at: datetime = Field(default_factory=datetime.utcnow)  
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     user: Optional["User"] = Relationship(back_populates="reviews")
     service: Optional["Service"] = Relationship(back_populates="reviews")

@@ -1,9 +1,11 @@
+from __future__ import annotations
 import uuid
 from uuid import UUID
-from datetime import datetime
+from datetime import datetime,timezone
 from typing import Optional
 from sqlmodel import SQLModel, Field, Relationship
-from src.models.user import User
+
+
 
 class Notification(SQLModel, table=True):
     __tablename__ = "notifications"
@@ -26,7 +28,9 @@ class Notification(SQLModel, table=True):
     # حالة الإشعار (هل قرأه المستخدم أم لا؟)
     is_read: bool = Field(default=False, nullable=False)
     
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updateed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 
     # العلاقة مع جدول المستخدمين
     user: Optional["User"] = Relationship(back_populates="notifications")

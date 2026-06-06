@@ -1,10 +1,10 @@
-from datetime import datetime
+from __future__ import annotations
+from datetime import datetime,timezone
 from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
 import uuid
 from uuid import UUID
-from src.models.user import User
-from src.models.service import Service
+
 
 
 import uuid
@@ -23,8 +23,8 @@ class Vendor(SQLModel, table=True):
     city: Optional[str] = Field(index=True)
     address: Optional[str] = Field(index=True)
     
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     user: Optional["User"] = Relationship(back_populates="vendor_profile")
     services: List["Service"] = Relationship(back_populates="vendor")

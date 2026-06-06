@@ -221,3 +221,5 @@ mounasabati.db
 *.db
 #Folder
 upload/
+
+*.sqlite

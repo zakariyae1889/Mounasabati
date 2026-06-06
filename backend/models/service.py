@@ -1,18 +1,16 @@
+from __future__ import annotations
 import enum
-from datetime import datetime
+from datetime import datetime,timezone
 from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
 
-import datetime
+
 import uuid
 from uuid import UUID
 import enum
 
 
-from src.models.vendor import Vendor
-from src.models.reviews import Review
-from src.models.booking import Booking
-from src.models.client import Client
+
 
 
 
@@ -20,12 +18,7 @@ class ServiceStatus(enum.Enum): # غيرت الاسم لتجنب التكرار 
     active = "active"
     inactive = "inactive"
 
-import uuid
-from uuid import UUID
-from datetime import datetime
-from typing import Optional, List
-from sqlmodel import SQLModel, Field, Relationship
-import enum
+
 
 class ServiceStatus(str, enum.Enum):
     active = "active"
@@ -43,8 +36,8 @@ class Service(SQLModel, table=True):
     image: str = Field(default="default_service.png")
     status: ServiceStatus = Field(default=ServiceStatus.active, nullable=False)
     
-    created_at: datetime = Field(default_factory=datetime.utcnow)  
-    updated_at: datetime = Field(default_factory=datetime.utcnow)   
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))  
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))   
 
     # العلاقات العكسية الصحيحة
     vendor: Optional["Vendor"] = Relationship(back_populates="services")

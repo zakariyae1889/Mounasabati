@@ -1,25 +1,12 @@
+from __future__ import annotations
 import enum
-from datetime import datetime
+from datetime import datetime,timezone
 from typing import Optional, List
 from sqlmodel import SQLModel, Field, Relationship
-
 import uuid
 from uuid import UUID
-from src.models.client import Client
-from src.models.vendor import Vendor
-from src.models.reviews import Review
-from src.models.booking import Booking
-from src.models.payment import Payment
-from src.models.notification import Notification
-class UserRole(str, enum.Enum):
-    client = "client"
-    vendor = "vendor"
 
-
-
-
-
-
+# تعريف الـ Roles مرة واحدة فقط بشكل صحيح
 class UserRole(str, enum.Enum):
     client = "client"
     vendor = "vendor"
@@ -38,10 +25,10 @@ class User(SQLModel, table=True):
     role: UserRole = Field(default=UserRole.client)
     image: str = Field(default="default_service.png")
     
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    # تم تصحيح back_populates ليرتبط بـ اسم الحقل الفعلي في الجداول الأخرى
+    # العلاقات البرمجية المرتبطة بالجداول الأخرى
     client_profile: Optional["Client"] = Relationship(back_populates="user")
     vendor_profile: Optional["Vendor"] = Relationship(back_populates="user")
     reviews: List["Review"] = Relationship(back_populates="user")

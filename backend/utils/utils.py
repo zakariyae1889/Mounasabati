@@ -1,6 +1,6 @@
 import uuid
 from slugify import slugify
-from src.models.service import Service
+from models.service import Service
 
 def generate_uinque_slug(db,service_name:str)->str:
     slug=slugify(service_name)

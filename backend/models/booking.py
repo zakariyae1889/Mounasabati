@@ -1,16 +1,15 @@
-
+from __future__ import annotations
 from typing import Optional,List
 from sqlmodel import SQLModel, Field, Relationship
 
 import datetime
-from datetime import datetime, date, time
+from datetime import datetime, date, time,timezone
 import uuid
 from uuid import UUID
 import enum
 
-from src.models.user import User
-from src.models.service import Service
-from src.models.payment import Payment
+
+
 class BookingStatus(enum.Enum):
     pending = "pending"
     confirmed = "confirmed"
@@ -37,8 +36,9 @@ class Booking(SQLModel, table=True):
     total_price: float = Field(default=0.00)
     status: BookingStatus = Field(default=BookingStatus.pending)
 
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     user: Optional["User"] = Relationship(back_populates="bookings")
     service: Optional["Service"] = Relationship(back_populates="bookings")
