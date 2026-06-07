@@ -21,6 +21,7 @@ class UserOut(BaseModel):
     last_name: Optional[str]
     CIN: str
     role: str
+    image_profile: Optional[str]
 
     class Config: 
         from_attributes = True
@@ -31,8 +32,10 @@ class UserUpdate(BaseModel):
     Email:Optional[EmailStr]=None
     First_name:Optional[str]=None
     Last_name:Optional[str]=None
+    image_profile: Optional[str] = None
    
  
 class UserLgoin(BaseModel):
    Username:str=Field(...,min_length=4,max_length=16)
+   CIN:str=Field(...,pattern=r"^[A-Z,a-z]{1,2}\d{5,7}$")
    Password:str=Field(...,min_length=8,max_length=16)
