@@ -10,6 +10,7 @@ class VendorCreate(BaseModel):
     address: str = Field(..., min_length=4)
     rc_number: str = Field(...)
     description: Optional[str] = None
+    image_profile: Optional[str]=None
     
 class VendorUpdate(BaseModel):
     Business_name:Optional[str]=None
@@ -18,7 +19,7 @@ class VendorUpdate(BaseModel):
     Address:Optional[str]=None
     RC_number:Optional[str]=None
     Description:Optional[str]=None
-    Image:Optional[str]=None
+    image_profile: Optional[str]=None
 
 class VendorOut(BaseModel):
     business_name: str

@@ -9,7 +9,7 @@ class UserCreate(BaseModel):
     CIN: str = Field(..., pattern=r"^[A-Z,a-z]{1,2}\d{5,7}$")
     password: str = Field(..., min_length=8, max_length=100)
     role: Optional[str] = "client"
-    image_profile: Optional[str] = None
+   
 
 
 
@@ -21,7 +21,7 @@ class UserOut(BaseModel):
     last_name: Optional[str]
     CIN: str
     role: str
-    image_profile: Optional[str]
+    
 
     class Config: 
         from_attributes = True

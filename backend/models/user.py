@@ -31,7 +31,7 @@ class User(SQLModel, table=True):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     role: UserRole = Field(default=UserRole.client)
-    image: str = Field(default="default_service.png")
+   
     
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

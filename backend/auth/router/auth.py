@@ -25,7 +25,7 @@ def register(user_data:UserCreate,session:Session=Depends(get_session)):
         last_name=user_data.last_name,
         CIN=user_data.CIN,
         password=hashed_pwd,
-        image=user_data.image_profile
+        
     )
     session.add(new_user)
     session.commit()
@@ -40,8 +40,7 @@ def update_user(CIN:str,user_data:UserUpdate,session:Session=Depends(get_session
    
     update_data=user_data.model_dump(exclude_unset=True)
 
-    if "image_profile" in update_data:
-        update_data["image"]=update_data.pop("image_profile")
+    
 
     for key,value in update_data.items():
         setattr(user,key,value)
