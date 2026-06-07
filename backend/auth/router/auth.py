@@ -4,7 +4,7 @@ from core.database import get_session
 from auth.security import hash_password,verify_password,create_access_token
 from schemas.user import UserCreate,UserOut,UserLogin,UserUpdate
 from models.user import User
-
+from models.client import Client
 
 router=APIRouter(prefix="auth/",tags=["Authentication"])
 
@@ -47,6 +47,16 @@ def update_user(CIN:str,user_data:UserUpdate,session:Session=Depends(get_session
     session.add(user)
     session.commit()
     session.refresh(user)
+
+
+@router.delete("/delete/{CIN}")
+def delete_user(CIN:str,session:Session=Depends(get_session)):
+    user=session.exe(select(User).where(User.CIN==CIN)).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="المستخدم غير موجود")
+    session.delete(user)
+    session.commit()
+    return {"message":"تم حذف المستخدم بنجاح"}
     
 
 @router.post("/login")

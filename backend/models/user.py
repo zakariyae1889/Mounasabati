@@ -32,14 +32,16 @@ class User(SQLModel, table=True):
     last_name: Optional[str] = None
     role: UserRole = Field(default=UserRole.client)
    
-    
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    # العلاقات البرمجية المرتبطة بالجداول الأخرى
-    client_profile: Optional["Client"] = Relationship(back_populates="user")
-    vendor_profile: Optional["Vendor"] = Relationship(back_populates="user")
-    reviews: List["Review"] = Relationship(back_populates="user")
-    bookings: List["Booking"] = Relationship(back_populates="user") 
-    notifications: List["Notification"] = Relationship(back_populates="user")
-    payment: List["Payment"] = Relationship(back_populates="user")
+   
+    client_profile: Optional["Client"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
+    vendor_profile: Optional["Vendor"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
+    
+   
+   
+    reviews: List["Review"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
+    bookings: List["Booking"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"}) 
+    notifications: List["Notification"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
+    payments: List["Payment"] = Relationship(back_populates="user")

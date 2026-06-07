@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Optional,List,TYPE_CHECKING
-from sqlmodel import SQLModel, Field, Relationship
+from sqlmodel import SQLModel, Field, Relationship,Column,ForeignKey
 
 import datetime
 from datetime import datetime, date, time,timezone
@@ -31,23 +31,20 @@ class Booking(SQLModel, table=True):
     __tablename__ = "bookings"
     
     id: UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True, nullable=False, unique=True)
-    service_id: UUID = Field(foreign_key="services.id", nullable=False)
-    user_id: UUID = Field(foreign_key="users.id", nullable=False)
+    service_id: UUID = Field(sa_column=Column(ForeignKey("services.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False))
+    user_id: UUID = Field(sa_column=Column(ForeignKey("users.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False))
     
     event_date: date = Field(nullable=False)
     event_time: time = Field(nullable=False)
     total_price: float = Field(default=0.00)
     status: BookingStatus = Field(default=BookingStatus.pending)
-
     
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    user: Optional["User"] = Relationship(back_populates="bookings")
-    service: Optional["Service"] = Relationship(back_populates="bookings")
-
-
-    payment: List["Payment"] = Relationship(back_populates="bookings")
+    user: "User" = Relationship(back_populates="bookings")
+    service: "Service" = Relationship(back_populates="bookings")
+    payments: List["Payment"] = Relationship(back_populates="booking")
 
 
 
