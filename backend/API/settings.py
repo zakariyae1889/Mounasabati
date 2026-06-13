@@ -121,6 +121,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'API.wsgi.application'
 
 
+
+#Eamil
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '127.0.0.1'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'no-reply@mounasabati.ma'
+
+
+
+
+
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 

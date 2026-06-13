@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from  utils.permission import IsAdminUser
 from .models import Users
 
+from django.core.mail import send_mail
 
 def hello(request):
    return JsonResponse({"message": "hello world"})
@@ -56,20 +57,41 @@ class ChangePassword(APIView):
 
 class EmailRest(APIView):
    permission_classes=[IsAuthenticated]
-   def post(self):
-      serializer=EmailRest(data=self.request.data)
+   def post(self,request):
+      serializer=EmailRest(data=request.data)
       if serializer.is_valid():
-         return Response({"message":"email sent successfully"},status=status.HTTP_200_OK)
-      return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+         email=serializer.validate_data['email']
+         user=Users.objects.get(email=email)
+         reset_link = f"http://localhost:3000/reset-password?user_cin={user.cin}"
+         send_mail(
+               subject='إعادة تعيين كلمة المرور - منصة مناسباتي',
+               message=f'مرحباً {user.username}، لإعادة تعيين كلمة المرور الخاصة بك، يرجى الضغط على الرابط التالي: {reset_link}',
+               from_email='no-reply@mounasabati.ma',
+               recipient_list=[email],
+               fail_silently=False,
+            )
+            
+         return Response({"message": "تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني."}, status=status.HTTP_200_OK)
+      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+   
    
 
-class ForgotPassword(APIView):
+class ForgotPasswordView(APIView):
    permission_classes=[IsAuthenticated]
    def post(request):
       serializer=ForgotPassword(data=request.data)
       if serializer.is_valid():
-         serializer.save()
-         return Response({"message":"password updated successfully"},status=status.HTTP_200_OK)
+         user_cin=request.data.get('user_cin')
+         if not user_cin:
+                return Response({"error": "معرف المستخدم (user_cin) مطلوب."}, status=status.HTTP_400_BAD_REQUEST)
+         try:
+            user = Users.objects.get(cin=user_cin)
+             
+            user.set_password(serializer.validated_data['password'])
+            user.save()
+            return Response({"message": "تمت إعادة تعيين كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول."}, status=status.HTTP_200_OK)
+         except Users.DoesNotExist:
+            return Response({"error": "المستخدم غير موجود."}, status=status.HTTP_404_NOT_FOUND)
       return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
    
 

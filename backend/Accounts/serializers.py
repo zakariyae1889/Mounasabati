@@ -11,6 +11,17 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         model=Users
         fields=["username","email","first_name","last_name","role","cin","image","password"]
 
+    extra_Kwargs={
+        "username":{"required":True,"allow_blank":True},
+        "first_name":{"required":True,"allow_blank":False},
+        "last_name":{"required":True,"allow_blank":False},
+        "email":{"required":True,"allow_blank":False},
+        "cin":{"required":True,"allow_blank":False},
+        "role":{"required":True,"allow_blank":False},
+        "image":{"required":False,"allow_blank":False},
+        "password":{"required":True,"allow_blank":False,"min_length":8}
+    }
+
     def create(self, validated_data):
         password=validated_data.pop("password")
 
